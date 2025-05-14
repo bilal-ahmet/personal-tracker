@@ -10,4 +10,6 @@ router.post('/register', authController.postRegister);
 
 router.get('/logout', authController.logout);
 
+router.post('/delete/:id', authController.deleteUser);
+
 module.exports = router;

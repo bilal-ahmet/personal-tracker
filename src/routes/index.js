@@ -1,20 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-const authRoutes = require('./auth.routes');
-const goalRoutes = require('./goal.routes');
-const progressRoutes = require('./progress.routes');
-
+const authRoutes = require('./authRoutes'); // Fixed import path
+const goalRoutes = require('./goalRoutes'); // Fixed import path
+const progressRoutes = require('./progressRoutes'); // Fixed import path
 
 router.use('/', authRoutes);
 router.use('/goals', goalRoutes);
 router.use('/progress', progressRoutes);
 
-
 router.get('/', (req, res) => {
   res.redirect('/login');
 });
-
 
 router.get('/dashboard', (req, res) => {
   if (!req.session.user) return res.redirect('/login');

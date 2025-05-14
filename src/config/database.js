@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
 );
 
 // Test connection
-(async ({}) => {
+(async () => {
   try {
     await sequelize.authenticate();
     console.log("✅ MySQL bağlantısı başarılı.");
@@ -22,7 +22,7 @@ const sequelize = new Sequelize(
   }
 })();
 
-sequelize.sync({ force: true }) // alter: true = tabloyu günceller, production için dikkatli kullan!
+sequelize.sync() // Removed force: true
   .then(() => {
     console.log('✅ Veritabanı ile senkronizasyon başarılı.');
   })

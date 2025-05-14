@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    goalId: {
+    goalId: { // Ensure goalId is defined
       type: DataTypes.INTEGER,
       allowNull: false
     },

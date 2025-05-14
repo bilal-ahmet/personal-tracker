@@ -1,5 +1,3 @@
-<% layout('layouts/layout') %>
-
 <h2>Hedeflerim</h2>
 <% if (goals.length === 0) { %>
   <p>Henüz hiçbir hedefiniz yok. <a href="/goals/new">Yeni hedef ekleyin.</a></p>
@@ -11,6 +9,9 @@
         <p><%= goal.description || 'Açıklama yok' %></p>
         <p>Hedef Tarihi: <%= new Date(goal.targetDate).toLocaleDateString() %></p>
         <a href="/progress/<%= goal.id %>" class="btn btn-info btn-sm">İlerlemeleri Gör</a>
+        <form method="POST" action="/goals/delete/<%= goal.id %>" class="d-inline">
+          <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+        </form>
       </li>
     <% }) %>
   </ul>

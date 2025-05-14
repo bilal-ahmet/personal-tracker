@@ -1,5 +1,3 @@
-<% layout('layouts/layout') %>
-
 <h2>İlerlemeler</h2>
 <% if (progressList.length === 0) { %>
   <p>Henüz herhangi bir ilerleme kaydetmediniz. <a href="/progress/<%= goalId %>">İlerleme kaydedin</a>.</p>
@@ -10,6 +8,9 @@
         <p>Tarih: <%= new Date(progress.date).toLocaleDateString() %></p>
         <p>İlerleme: <%= progress.progressAmount %> birim</p>
         <p>Not: <%= progress.note || 'Not yok' %></p>
+        <form method="POST" action="/progress/delete/<%= goalId %>/<%= progress.id %>" class="d-inline">
+          <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+        </form>
       </li>
     <% }) %>
   </ul>

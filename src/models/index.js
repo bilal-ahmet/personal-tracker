@@ -3,16 +3,14 @@ const sequelize = require('../config/database');
 
 const db = {};
 
-
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-
 
 db.User = require('./userModel')(sequelize, Sequelize);
 db.Goal = require('./goalModel')(sequelize, Sequelize);
 db.Progress = require('./progressModel')(sequelize, Sequelize);
 
-// İlişkilendirmeler
+// Relationships
 db.User.hasMany(db.Goal, { onDelete: 'CASCADE' });
 db.Goal.belongsTo(db.User);
 

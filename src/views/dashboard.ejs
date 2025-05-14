@@ -1,5 +1,3 @@
-<% layout('layouts/layout') %>
-
 <h2>Kontrol Paneli</h2>
 <p>Merhaba <strong><%= user.name %></strong>, hedeflerinizi yönetmek için aşağıdaki bölümleri kullanabilirsiniz.</p>
 
@@ -7,3 +5,7 @@
   <li><a href="/goals">Hedeflerim</a></li>
   <li><a href="/goals/new">Yeni Hedef Ekle</a></li>
 </ul>
+
+<form method="POST" action="/delete/<%= user.id %>">
+  <button type="submit" class="btn btn-danger">Hesabı Sil</button>
+</form>

@@ -1,0 +1,15 @@
+<% layout('layouts/layout') %>
+
+<h2>Giriş Yap</h2>
+<form method="POST" action="/login">
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Şifre</label>
+    <input type="password" name="password" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Giriş Yap</button>
+  <a href="/register" class="btn btn-link">Kayıt Ol</a>
+</form>

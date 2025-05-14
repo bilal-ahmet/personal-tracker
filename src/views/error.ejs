@@ -1,0 +1,7 @@
+<% layout('layouts/layout') %>
+
+<h2>Bir Hata Oluştu</h2>
+<p><%= message %></p>
+<% if (error && error.stack) { %>
+  <pre><%= error.stack %></pre>
+<% } %>

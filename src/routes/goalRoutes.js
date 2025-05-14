@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const goalController = require('../controllers/goalController');
 
-router.get('/', goalController.listGoals);
-router.get('/new', goalController.newGoalForm);
-router.post('/new', goalController.createGoal);
+router.get('/', isAuthenticated, goalController.listGoals);
+router.get('/new', isAuthenticated, goalController.newGoalForm);
+router.post('/new', isAuthenticated, goalController.createGoal);
 
 module.exports = router;

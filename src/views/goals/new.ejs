@@ -1,0 +1,19 @@
+<% layout('layouts/layout') %>
+
+<h2>Yeni Hedef Ekle</h2>
+<form method="POST" action="/goals/new">
+  <div class="mb-3">
+    <label>Hedef Başlığı</label>
+    <input type="text" name="title" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Açıklama</label>
+    <textarea name="description" class="form-control"></textarea>
+  </div>
+  <div class="mb-3">
+    <label>Hedef Tarihi</label>
+    <input type="date" name="targetDate" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Hedefi Ekle</button>
+  <a href="/goals" class="btn btn-link">Geri</a>
+</form>

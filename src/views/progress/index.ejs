@@ -1,0 +1,33 @@
+<% layout('layouts/layout') %>
+
+<h2>İlerlemeler</h2>
+<% if (progressList.length === 0) { %>
+  <p>Henüz herhangi bir ilerleme kaydetmediniz. <a href="/progress/<%= goalId %>">İlerleme kaydedin</a>.</p>
+<% } else { %>
+  <ul class="list-group">
+    <% progressList.forEach(progress => { %>
+      <li class="list-group-item">
+        <p>Tarih: <%= new Date(progress.date).toLocaleDateString() %></p>
+        <p>İlerleme: <%= progress.progressAmount %> birim</p>
+        <p>Not: <%= progress.note || 'Not yok' %></p>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<h3>Yeni İlerleme Ekle</h3>
+<form method="POST" action="/progress/<%= goalId %>">
+  <div class="mb-3">
+    <label>İlerleme Tarihi</label>
+    <input type="date" name="date" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>İlerleme Miktarı</label>
+    <input type="number" name="progressAmount" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Not</label>
+    <textarea name="note" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">İlerlemeyi Kaydet</button>
+</form>

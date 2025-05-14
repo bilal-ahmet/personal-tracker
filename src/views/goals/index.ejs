@@ -1,0 +1,17 @@
+<% layout('layouts/layout') %>
+
+<h2>Hedeflerim</h2>
+<% if (goals.length === 0) { %>
+  <p>Henüz hiçbir hedefiniz yok. <a href="/goals/new">Yeni hedef ekleyin.</a></p>
+<% } else { %>
+  <ul class="list-group">
+    <% goals.forEach(goal => { %>
+      <li class="list-group-item">
+        <h5><%= goal.title %></h5>
+        <p><%= goal.description || 'Açıklama yok' %></p>
+        <p>Hedef Tarihi: <%= new Date(goal.targetDate).toLocaleDateString() %></p>
+        <a href="/progress/<%= goal.id %>" class="btn btn-info btn-sm">İlerlemeleri Gör</a>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

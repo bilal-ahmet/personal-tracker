@@ -1,5 +1,5 @@
-const { Sequelize } = require('sequelize');
-require('dotenv').config();
+const { Sequelize } = require("sequelize");
+require("dotenv").config();
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -7,19 +7,27 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
-    dialect: 'mysql',
+    dialect: "mysql",
     logging: false,
   }
 );
 
 // Test connection
-(async () => {
+(async ({}) => {
   try {
     await sequelize.authenticate();
-    console.log('✅ MySQL bağlantısı başarılı.');
+    console.log("✅ MySQL bağlantısı başarılı.");
   } catch (error) {
-    console.error('❌ Veritabanına bağlanılamadı:', error);
+    console.error("❌ Veritabanına bağlanılamadı:", error);
   }
 })();
+
+sequelize.sync({ force: true }) // alter: true = tabloyu günceller, production için dikkatli kullan!
+  .then(() => {
+    console.log('✅ Veritabanı ile senkronizasyon başarılı.');
+  })
+  .catch((err) => {
+    console.error('❌ Sequelize sync hatası:', err);
+  });
 
 module.exports = sequelize;

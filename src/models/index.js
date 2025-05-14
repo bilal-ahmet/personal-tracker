@@ -8,11 +8,11 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 
-db.User = require('./user.model')(sequelize, Sequelize);
-db.Goal = require('./goal.model')(sequelize, Sequelize);
-db.Progress = require('./progress.model')(sequelize, Sequelize);
+db.User = require('./userModel')(sequelize, Sequelize);
+db.Goal = require('./goalModel')(sequelize, Sequelize);
+db.Progress = require('./progressModel')(sequelize, Sequelize);
 
-// İlişkilendirmeler (örnek)
+// İlişkilendirmeler
 db.User.hasMany(db.Goal, { onDelete: 'CASCADE' });
 db.Goal.belongsTo(db.User);
 

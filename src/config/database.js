@@ -22,7 +22,7 @@ const sequelize = new Sequelize(
   }
 })();
 
-sequelize.sync() // Removed force: true
+sequelize.sync()
   .then(() => {
     console.log('✅ Veritabanı ile senkronizasyon başarılı.');
   })

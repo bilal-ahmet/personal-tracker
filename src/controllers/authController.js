@@ -51,26 +51,22 @@ exports.logout = (req, res) => {
   });
 };
 
-// Delete user
 exports.deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
     console.log('Deleting user and associated data for userId:', userId);
 
-    // Delete associated progress records
     await Progress.destroy({
       where: { goalId: db.sequelize.literal(`(SELECT id FROM goals WHERE userId = ${userId})`) }
     });
 
-    // Delete associated goals
     await Goal.destroy({ where: { userId } });
 
-    // Delete the user
     await User.destroy({ where: { id: userId } });
 
     res.redirect('/login');
   } catch (error) {
     console.error('Error deleting user:', error);
-    res.redirect('/users');
+    res.redirect('/login');
   }
 };

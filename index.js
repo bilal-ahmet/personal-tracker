@@ -40,6 +40,8 @@ app.use((req, res, next) => {
 // Configure EJS Layouts
 app.use(expressLayouts);
 app.set('layout', 'layouts/layout');
+app.set('views', path.join(__dirname, 'src', 'views'));
+app.set('view engine', 'ejs');
 
 app.use(routes);
 

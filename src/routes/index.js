@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const authRoutes = require('./authRoutes'); // Fixed import path
-const goalRoutes = require('./goalRoutes'); // Fixed import path
-const progressRoutes = require('./progressRoutes'); // Fixed import path
+const authRoutes = require('./authRoutes');
+const goalRoutes = require('./goalRoutes');
+const progressRoutes = require('./progressRoutes');
 
 router.use('/', authRoutes);
 router.use('/goals', goalRoutes);

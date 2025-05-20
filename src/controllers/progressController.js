@@ -5,7 +5,7 @@ const Goal = db.Goal;
 exports.viewProgress = async (req, res) => {
   try {
     const progressList = await Progress.findAll({
-      where: { goalId: req.params.goalId },
+      where: { GoalId: req.params.goalId },
       order: [['date', 'DESC']]
     });
     res.render('progress/index', { progressList, goalId: req.params.goalId });
@@ -22,7 +22,7 @@ exports.addProgress = async (req, res) => {
       date,
       progressAmount,
       note,
-      goalId: req.params.goalId
+      GoalId: req.params.goalId
     });
     res.redirect(`/progress/${req.params.goalId}`);
   } catch (error) {

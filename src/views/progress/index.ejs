@@ -1,34 +1,45 @@
-<h2>İlerlemeler</h2>
+<h2 class="text-center my-4">İlerlemeler</h2>
+
 <% if (progressList.length === 0) { %>
-  <p>Henüz herhangi bir ilerleme kaydetmediniz. <a href="/progress/<%= goalId %>">İlerleme kaydedin</a>.</p>
+  <div class="alert alert-info text-center">
+    Henüz herhangi bir ilerleme kaydetmediniz.
+  </div>
 <% } else { %>
-  <ul class="list-group">
+  <div class="row">
     <% progressList.forEach(progress => { %>
-      <li class="list-group-item">
-        <p>Tarih: <%= new Date(progress.date).toLocaleDateString() %></p>
-        <p>İlerleme: <%= progress.progressAmount %> birim</p>
-        <p>Not: <%= progress.note || 'Not yok' %></p>
-        <form method="POST" action="/progress/delete/<%= goalId %>/<%= progress.id %>" class="d-inline">
-          <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-        </form>
-      </li>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Tarih: <%= new Date(progress.date).toLocaleDateString() %></h5>
+            <p class="card-text">İlerleme: <strong><%= progress.progressAmount %></strong> birim</p>
+            <p class="card-text text-muted">Not: <%= progress.note || 'Not yok' %></p>
+            <form method="POST" action="/progress/delete/<%= goalId %>/<%= progress.id %>">
+              <button type="submit" class="btn btn-danger btn-sm w-100">Sil</button>
+            </form>
+          </div>
+        </div>
+      </div>
     <% }) %>
-  </ul>
+  </div>
 <% } %>
 
-<h3>Yeni İlerleme Ekle</h3>
-<form method="POST" action="/progress/<%= goalId %>">
-  <div class="mb-3">
-    <label>İlerleme Tarihi</label>
-    <input type="date" name="date" class="form-control" required>
+<h3 class="text-center my-4">Yeni İlerleme Ekle</h3>
+<div class="card shadow-sm mb-5">
+  <div class="card-body">
+    <form method="POST" action="/progress/<%= goalId %>">
+      <div class="mb-3">
+        <label class="form-label">İlerleme Tarihi</label>
+        <input type="date" name="date" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">İlerleme Miktarı</label>
+        <input type="number" name="progressAmount" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Not</label>
+        <textarea name="note" class="form-control" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">İlerlemeyi Kaydet</button>
+    </form>
   </div>
-  <div class="mb-3">
-    <label>İlerleme Miktarı</label>
-    <input type="number" name="progressAmount" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label>Not</label>
-    <textarea name="note" class="form-control"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">İlerlemeyi Kaydet</button>
-</form>
+</div>

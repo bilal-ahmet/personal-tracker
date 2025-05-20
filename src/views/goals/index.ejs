@@ -1,18 +1,32 @@
-<h2>Hedeflerim</h2>
+<h2 class="text-center mb-4">Hedeflerim</h2>
+
 <% if (goals.length === 0) { %>
-  <p>Henüz hiçbir hedefiniz yok. <a href="/goals/new">Yeni hedef ekleyin.</a></p>
+  <div class="alert alert-info text-center">
+    Henüz hiçbir hedefiniz yok. <a href="/goals/new" class="btn btn-success btn-sm">Yeni hedef ekleyin.</a>
+  </div>
 <% } else { %>
-  <ul class="list-group">
+  <div class="row">
     <% goals.forEach(goal => { %>
-      <li class="list-group-item">
-        <h5><%= goal.title %></h5>
-        <p><%= goal.description || 'Açıklama yok' %></p>
-        <p>Hedef Tarihi: <%= new Date(goal.targetDate).toLocaleDateString() %></p>
-        <a href="/progress/<%= goal.id %>" class="btn btn-info btn-sm">İlerlemeleri Gör</a>
-        <form method="POST" action="/goals/delete/<%= goal.id %>" class="d-inline">
-          <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-        </form>
-      </li>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title"><%= goal.title %></h5>
+              <p class="card-text"><%= goal.description || 'Açıklama yok' %></p>
+              <p class="text-muted">Hedef Tarihi: <%= new Date(goal.targetDate).toLocaleDateString() %></p>
+              <p class="text-success">Toplam İlerleme: <%= goal.dataValues.totalProgress || 0 %> birim</p>
+            </div>
+            <div class="d-flex gap-2 mt-3">
+              <form action="/progress/<%= goal.id %>" method="get" class="w-50">
+                <button type="submit" class="btn btn-info w-100">İlerlemeleri Gör</button>
+              </form>
+              <form method="POST" action="/goals/delete/<%= goal.id %>" class="w-50">
+                <button type="submit" class="btn btn-danger w-100">Sil</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     <% }) %>
-  </ul>
+  </div>
 <% } %>
